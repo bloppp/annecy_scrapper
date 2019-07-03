@@ -81,7 +81,11 @@ public class App {
                       .plus(startTime.getHour(), ChronoUnit.HOURS)
                       .plus(startTime.getMinute(), ChronoUnit.MINUTES),
                   startOfDay
-                      .plus(endTime.getHour(), ChronoUnit.HOURS)
+                      .plus(
+                          endTime.getHour() >= startTime.getHour()
+                              ? endTime.getHour()
+                              : endTime.getHour() + 24,
+                          ChronoUnit.HOURS)
                       .plus(endTime.getMinute(), ChronoUnit.MINUTES),
                   location);
           System.out.println(session.toString());
