@@ -1,0 +1,27 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "baka.annecy.scraper.configuration.ApplicationProperties",
+      "name": "annecy.scrapper",
+      "type": "baka.annecy.scraper.configuration.ApplicationProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "baka.annecy.scraper.configuration.ApplicationProperties",
+      "name": "annecy.scrapper.app-name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "baka.annecy.scraper.configuration.ApplicationProperties",
+      "name": "annecy.scrapper.base-package",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "baka.annecy.scraper.configuration.ApplicationProperties",
+      "name": "annecy.scrapper.default-language",
+      "type": "java.lang.String"
+    }
+  ]
+}

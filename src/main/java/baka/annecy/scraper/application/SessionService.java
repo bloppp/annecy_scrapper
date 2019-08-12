@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Month;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -20,14 +21,18 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import baka.annecy.scraper.domain.session.Session;
 import baka.annecy.scraper.domain.session.SessionRepository;
 import baka.annecy.scraper.domain.session.dto.SessionDto;
 
+@Service
+@Transactional
 public class SessionService {
-
   @Autowired SessionRepository sessionRepository;
+  @Autowired MovieService movieService;
+  @Autowired LocationService locationService;
 
   private List<Session> getAllSessionFromWebsite() {
     Document doc;
@@ -43,6 +48,11 @@ public class SessionService {
      */
 
     List<Session> sessionList = new ArrayList<Session>();
+
+    Integer year =
+        Instant.now().atZone(ZoneId.of("Europe/Paris")).getMonth().compareTo(Month.JUNE) < 0
+            ? Instant.now().atZone(ZoneId.of("Europe/Paris")).getYear() - 1
+            : Instant.now().atZone(ZoneId.of("Europe/Paris")).getYear();
 
     for (String day : dayList) {
       try {
@@ -99,7 +109,8 @@ public class SessionService {
                               : endTime.getHour() + 24,
                           ChronoUnit.HOURS)
                       .plus(endTime.getMinute(), ChronoUnit.MINUTES),
-                  location);
+                  location,
+                  year);
           sessionList.add(session);
         }
       } catch (IOException e) {
@@ -112,6 +123,10 @@ public class SessionService {
   @Transactional
   public List<SessionDto> importSessions() {
     List<Session> sessionList = getAllSessionFromWebsite();
+
+    movieService.saveList(sessionList.stream().map(Session::getMovie).collect(Collectors.toList()));
+    locationService.saveList(sessionList.stream().map(Session::getLocation).collect(Collectors.toList()));
+
     sessionList.stream().forEach(this::saveSession);
     return sessionList.stream().map(SessionDto::new).collect(Collectors.toList());
   }
@@ -128,12 +143,11 @@ public class SessionService {
       sessionRepository.save(session);
     } else {
       oldSession.update(
-          session.getId(),
-          session.getTitle(),
-          session.getLocation(),
+          session.getMovie().getTitle(),
+          session.getMovie().getCategory().getName(),
           session.getStartDateTime(),
           session.getEndDateTime(),
-          session.getCategory());
+          session.getLocation());
       sessionRepository.save(oldSession);
     }
   }

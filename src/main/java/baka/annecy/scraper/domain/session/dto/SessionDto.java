@@ -19,12 +19,12 @@ public class SessionDto {
 
   public SessionDto(Session session) {
     this.id = session.getId();
-    this.title = session.getTitle();
-    this.category = session.getCategory();
+    this.title = session.getMovie().getTitle();
+    this.category = session.getMovie().getCategory().getName();
     this.startTimestamp =
         session.getStartDateTime() != null ? session.getStartDateTime().toEpochMilli() : null;
     this.endTimestamp =
         session.getEndDateTime() != null ? session.getEndDateTime().toEpochMilli() : null;
-    this.location = session.getLocation();
+    this.location = session.getLocation().getName();
   }
 }
