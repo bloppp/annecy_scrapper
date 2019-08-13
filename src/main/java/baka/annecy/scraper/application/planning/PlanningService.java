@@ -46,13 +46,17 @@ public class PlanningService {
     }
   }
 
-  public void selectPlanning(UUID id, String login) {
+  public PlanningDto selectPlanning(UUID id, String login) {
     List<Planning> planningList = planningRepository.findByUserLogin(login);
+    Planning selectedPlanning = null;
     for (Planning planning : planningList) {
       if (planning.getId().equals(id)) {
+        selectedPlanning = planning;
         continue;
       }
       planningRepository.delete(planning);
     }
+
+    return selectedPlanning != null ? new PlanningDto(selectedPlanning) : null;
   }
 }
