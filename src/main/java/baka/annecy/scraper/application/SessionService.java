@@ -120,20 +120,23 @@ public class SessionService {
     return sessionList;
   }
 
-  @Transactional
   public List<SessionDto> importSessions() {
     List<Session> sessionList = getAllSessionFromWebsite();
 
     movieService.saveList(sessionList.stream().map(Session::getMovie).collect(Collectors.toList()));
-    locationService.saveList(sessionList.stream().map(Session::getLocation).collect(Collectors.toList()));
+    locationService.saveList(
+        sessionList.stream().map(Session::getLocation).collect(Collectors.toList()));
 
     sessionList.stream().forEach(this::saveSession);
     return sessionList.stream().map(SessionDto::new).collect(Collectors.toList());
   }
 
-  @Transactional
   public List<SessionDto> findAllSession() {
     return sessionRepository.findAll().stream().map(SessionDto::new).collect(Collectors.toList());
+  }
+
+  public List<SessionDto> findByCategory(String categoryTitle) {
+    return sessionRepository.findByMovieCategoryName(categoryTitle).stream().map(SessionDto::new).collect(Collectors.toList());
   }
 
   private void saveSession(Session session) {

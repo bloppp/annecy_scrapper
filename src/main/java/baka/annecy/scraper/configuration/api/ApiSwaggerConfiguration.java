@@ -1,4 +1,4 @@
-package baka.annecy.scraper.configuration;
+package baka.annecy.scraper.configuration.api;
 
 import static baka.annecy.scraper.configuration.security.SecurityConstants.HTTP_HEADER_JW_TOKEN;
 import static baka.annecy.scraper.configuration.security.SecurityConstants.SECURITY_SCHEME_JW_TOKEN;
@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.fasterxml.classmate.TypeResolver;
 
+import baka.annecy.scraper.configuration.ApplicationProperties;
+import baka.annecy.scraper.configuration.dto.ErrorDto;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.builders.ResponseMessageBuilder;

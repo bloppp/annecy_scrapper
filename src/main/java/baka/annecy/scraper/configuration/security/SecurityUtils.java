@@ -2,6 +2,7 @@ package baka.annecy.scraper.configuration.security;
 
 import static baka.annecy.scraper.configuration.security.SecurityConstants.JWT_CLAIM_PROPERTY_USER;
 
+import java.security.MessageDigest;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
@@ -44,4 +45,29 @@ public class SecurityUtils {
         .setExpiration(new Date(expirationDateTime.toEpochMilli()))
         .compact();
   }
+  
+  public static String encodeToSHA512(String data) {
+	    try {
+	      MessageDigest md = MessageDigest.getInstance("SHA-512");
+	      md.update(data.getBytes("UTF-8"));
+	      byte[] mdData = md.digest();
+	      return convertToHex(mdData);
+	    } catch (Exception e) {
+	      return null;
+	    }
+	  }
+
+	  private static String convertToHex(byte[] data) {
+	    StringBuffer buf = new StringBuffer();
+	    for (int i = 0; i < data.length; i++) {
+	      int halfbyte = (data[i] >>> 4) & 0x0F;
+	      int two_halfs = 0;
+	      do {
+	        if ((0 <= halfbyte) && (halfbyte <= 9)) buf.append((char) ('0' + halfbyte));
+	        else buf.append((char) ('a' + (halfbyte - 10)));
+	        halfbyte = data[i] & 0x0F;
+	      } while (two_halfs++ < 1);
+	    }
+	    return buf.toString();
+	  }
 }

@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import baka.annecy.scraper.configuration.ApplicationProperties;
-import baka.annecy.scraper.domain.user.UserJwtPayload;
+import baka.annecy.scraper.domain.user.security.UserJwtPayload;
 
 @Configuration
 public class AppConfiguration {

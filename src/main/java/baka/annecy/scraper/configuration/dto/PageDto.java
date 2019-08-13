@@ -1,4 +1,4 @@
-package baka.annecy.scraper.configuration;
+package baka.annecy.scraper.configuration.dto;
 
 import java.util.List;
 

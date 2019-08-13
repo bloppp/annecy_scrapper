@@ -1,4 +1,4 @@
-package baka.annecy.scraper.configuration;
+package baka.annecy.scraper.configuration.api;
 
 import static baka.annecy.scraper.configuration.security.SecurityConstants.HTTP_HEADER_ACCESS_TOKEN;
 import static baka.annecy.scraper.configuration.security.SecurityConstants.HTTP_HEADER_JW_TOKEN;

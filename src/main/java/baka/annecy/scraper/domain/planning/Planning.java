@@ -11,14 +11,16 @@ import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.BatchSize;
 
 import baka.annecy.scraper.domain.session.Session;
+import baka.annecy.scraper.domain.user.User;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -27,7 +29,6 @@ import lombok.ToString;
 
 @Table
 @ToString
-@AllArgsConstructor
 @BatchSize(size = 100)
 @Entity(name = "planning")
 @Setter(AccessLevel.PRIVATE)
@@ -40,6 +41,12 @@ public class Planning {
   @NonNull private Float score;
 
   @Valid
+  @NotNull
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "user")
+  private User user;
+
+  @Valid
   @BatchSize(size = 100)
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(
@@ -49,7 +56,8 @@ public class Planning {
       indexes = {@Index(columnList = "planning_id"), @Index(columnList = "session_id")})
   private List<Session> sessionList = new ArrayList<Session>();
 
-  private Planning(List<Session> sessionList) {
+  public Planning(List<Session> sessionList) {
+    this.id = UUID.randomUUID();
     this.sessionList = sessionList;
     this.score = calculateScore();
   }
@@ -66,5 +74,9 @@ public class Planning {
   private Float calculateScore() {
     // TODO GoGo Tialys Rangers !
     return 0f;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
   }
 }

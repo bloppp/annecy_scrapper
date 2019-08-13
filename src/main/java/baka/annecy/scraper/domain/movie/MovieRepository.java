@@ -17,5 +17,5 @@ public interface MovieRepository extends Repository<Movie, String> {
   public Movie findForUpdateByTitle(String id);
 
   @Modifying
-  public void save(Movie session);
+  public void save(Movie movie);
 }

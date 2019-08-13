@@ -20,4 +20,6 @@ public class MessageConstants {
   public static final String SERVICE_ERROR_UNKOWN = "service.error.unknown";
 
   public static final String SERVICE_ERROR = "service.error";
+  
+  public static final String HEADER_JWT = "JW-Token";
 }
