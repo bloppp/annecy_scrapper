@@ -1,0 +1,18 @@
+<p>Calendars</p>
+<div class="calendar-container">
+    <p style="text-align:center; grid-column-start: 2; grid-row-start:1">Lundi</p>
+    <p style="text-align:center; grid-column-start: 4; grid-row-start:1">Mardi</p>
+    <p style="text-align:center; grid-column-start: 6; grid-row-start:1">Mercredi</p>
+    <p style="text-align:center; grid-column-start: 8; grid-row-start:1">Jeudi</p>
+    <p style="text-align:center; grid-column-start: 10; grid-row-start:1">Vendredi</p>
+    <p style="text-align:center; grid-column-start: 12; grid-row-start:1">Samedi</p>
+    <p style="text-align:center; grid-column-start: 14; grid-row-start:1">Dimanche</p>
+    <div *ngFor="let session of sessionList" [style.grid-row-start]="session.getStartColumn()" [style.grid-row-end]="session.getEndColumn()" [style.grid-column-start]="session.getRow()" [style.z-index]="session.id.substring(session.id.length-5, session.id.length)" class="session">
+        <p-card *ngIf="session.visible" [style.background-color]="session.movie.category.color">
+            <a href="https://www.annecy.org/programme/fiche:plng-{{session.id}}"><p>{{session.movie.title}}</p></a>
+            <p class="location">{{session.location}}</p>
+        </p-card>
+    </div>
+    <div *ngFor="let i of [0,1,2,3,4,5,6,7]" [style.grid-column-start]="i*2+1" style="position: absolute; border: 1px dashed grey; height: 100%; width: 1px; grid-row-start:1; grid-row-end:1020;margin-left: 4px; margin-right: 4px;"></div>
+    <div *ngFor="let i of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]" [style.grid-row-start]="i*60" style="position: absolute; border: 1px dashed grey; height: 1px; width: 99%; grid-column-start:1; grid-column-end:16; margin-left:4px; margin-right: 4px;"></div>
+</div>

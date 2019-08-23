@@ -1,0 +1,5 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
+    <left-bar class="left-bar" [categoryList]="categoryList" (onFilterChangeEvent)="handleFilterChange($event)"></left-bar>
+    <calendar class="calendar" [sessionList]="sessionList" [filter]="filter"></calendar>
+</div>

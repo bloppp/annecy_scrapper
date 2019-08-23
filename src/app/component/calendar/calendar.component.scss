@@ -1,0 +1,19 @@
+.calendar-container {
+    display: grid;
+    grid-template-columns: 10px repeat(7, 10% 10px);
+    grid-template-rows: repeat(1020, 2px);
+    position: relative;
+    min-height: 0;
+    min-width: 0;
+}
+
+.location {
+    text-align: right;
+}
+
+.session {
+    margin: 3px 0;
+    position: absolute;
+    overflow: hidden;
+    min-width: 0;
+}

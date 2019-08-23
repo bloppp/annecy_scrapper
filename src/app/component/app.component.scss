@@ -1,0 +1,16 @@
+.container{
+    display: flex;
+    height: 100%;
+}
+.left-bar {
+    flex-grow: 1;
+    max-width: 300px;
+    height: 100%;
+}
+.calendar {
+    flex-grow: 1;
+}
+
+body .ui-card {
+    height: 100%;
+}
