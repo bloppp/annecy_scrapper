@@ -1,5 +1,5 @@
 import { Category } from './Category';
-import { MovieDto } from '../api/model/movieDto';
+import { MovieDto } from '../api/model/movie.dto';
 
 export class Movie {
     title: string;

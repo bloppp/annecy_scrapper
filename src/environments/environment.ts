@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  jwt: "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7ImxvZ2luIjoiSG9tYXJkIiwicm9sZSI6IkFETUlOIn0sImV4cCI6MTU2NjU1Mjk0NH0.5FGqcTz2_OMOa51DUuhlPmugJNbXc3IP2R1v20lA24w",
+  jwt: "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7ImxvZ2luIjoiSG9tYXJkIiwicm9sZSI6IlVTRVIifSwiZXhwIjoxNTY2NjY1ODIzfQ.StXL28o61dyF7j-2_luixfvgtYKmdsDvy1Wc2mo9pNk",
   apiBaseUrl: "http://localhost:5000"
 };
 

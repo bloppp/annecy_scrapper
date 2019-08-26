@@ -10,6 +10,7 @@ import { CalendarComponent } from './component/calendar/calendar.component';
 import { ListboxModule } from 'primeng/listbox';
 import { FormsModule } from '@angular/forms'
 import { CategoryService } from './api/category.service';
+import { LocationService } from './api/location.service';
 import { AuthService } from './shared/auth.service';
 import { CookiesStorageService } from 'ngx-store';
 import { HttpClientModule } from '@angular/common/http';
@@ -36,6 +37,7 @@ import { SessionService } from './api/session.service';
     CategoryService,
     AuthService,
     UserService,
+    LocationService,
     SessionService,
     CookiesStorageService,
     HttpClientModule],

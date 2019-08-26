@@ -1,4 +1,4 @@
-import { MovieDto } from './movieDto';
+import { MovieDto } from './movie.dto';
 
 export class SessionDto {
     id: number;

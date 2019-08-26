@@ -1,4 +1,4 @@
-import { CategoryDto } from '../api/model/categoryDto';
+import { CategoryDto } from '../api/model/category.dto';
 
 export class Category {
     name: string;

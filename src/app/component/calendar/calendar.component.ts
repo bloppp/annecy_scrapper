@@ -16,7 +16,7 @@ export class CalendarComponent {
   @Input()
   set filter(filter: Filter) {
       this.sessionList = this.sessionList.map(session => {
-        if ((filter.category.length ===0 || filter.category.includes(session.movie.category.id)) && (filter.location.length === 0 || filter.location.includes(session.location))) {
+        if ((filter.category.length ===0 || filter.category.includes(session.movie.category.id)) && (filter.location.length === 0 || filter.location.includes(session.location.name))) {
           session.show();
         } else {
           session.hide();

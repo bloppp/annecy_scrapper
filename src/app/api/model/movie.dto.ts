@@ -1,4 +1,4 @@
-import { CategoryDto } from './categoryDto';
+import { CategoryDto } from './category.dto';
 
 export class MovieDto {
     title : string;

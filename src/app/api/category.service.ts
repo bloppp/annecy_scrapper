@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from '../shared/auth.service';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { CategoryDto } from './model/categoryDto';
+import { CategoryDto } from './model/category.dto';
 
 @Injectable()
 export class CategoryService {

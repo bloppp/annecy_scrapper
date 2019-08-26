@@ -2,18 +2,18 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from '../shared/auth.service';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { SessionDto } from './model/session.dto';
+import { environment } from '../../environments/environment';
+import { LocationDto } from './model/location.dto';
 
 @Injectable()
-export class SessionService {
+export class LocationService {
     constructor(private authService: AuthService, private http: HttpClient) {} 
     
     
-    getAllSession(): Observable<HttpResponse<SessionDto[]>> {
-        const serviceUrl = `${environment.apiBaseUrl}/sessions`;
+    getLocationList(): Observable<HttpResponse<LocationDto []>> {
+        const serviceUrl = `${environment.apiBaseUrl}/categories`;
 
-        return this.http.get<SessionDto[]>(serviceUrl, {
+        return this.http.get<LocationDto[]>(serviceUrl, {
             headers: this.authService.jwtHeader,
             observe: 'response',
         });

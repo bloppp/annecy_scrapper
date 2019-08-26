@@ -1,10 +1,11 @@
 import { Movie } from './Movie';
-import { SessionDto } from '../api/model/sessionDto';
+import { SessionDto } from '../api/model/session.dto';
+import { LocationDto } from '../api/model/location.dto';
 
 export class Session {
     id: number;
     movie: Movie;
-    location: string;
+    location: LocationDto;
     startDate: Date;
     endDate: Date;
     visible: boolean = true;
@@ -16,7 +17,7 @@ export class Session {
     public constructor(dto : SessionDto) {
         this.id = dto.id;
         this.movie = dto.movie != null ? new Movie(dto.movie) : null;
-        this.location = dto.location;
+        this.location = new LocationDto(dto.location);
         this.startDate = new Date(dto.startTimestamp);
         this.endDate = new Date(dto.endTimestamp);
     }
